@@ -1,7 +1,20 @@
 server:
-  port: 8081
+  port: 1111
+
+spring:
+  application:
+    name: eureka-server
 
 eureka:
+  # 指定主机名称
+  instance:
+    hostname: 127.0.0.1
   client:
+    #服务地址
     service-url:
-      defaultZone : http://192.168.11.198:1111/eureka/
+      defaultZone : http://${eureka.instance.hostname}:${server.port}/eureka/
+    #由于自己是服务器不需要注册都自己
+    register-with-eureka: false
+    #由于自己是服务器不需要从服务器获取注册信息
+    fetch-registry: false
+
